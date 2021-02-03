@@ -51,9 +51,9 @@ export class PostResolver {
             insert into updoot("userId", "postId", value)
             values ($1, $2, $3)
 
-            update post p
+            update post
             set points = points + $4
-            where p.id = $5
+            where post.id = $5
             
             COMMIT
         `, [userId, postId, realValue, realValue, postId]);
