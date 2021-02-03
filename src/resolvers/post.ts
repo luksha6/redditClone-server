@@ -61,8 +61,6 @@ export class PostResolver {
        replacments
        );
 
-       console.log(posts);
-
        /*
        const qb = getConnection()
         .getRepository(Post)
