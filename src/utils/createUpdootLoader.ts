@@ -1,4 +1,4 @@
-import DataLoader from 'dataLoader';
+import DataLoader from 'dataloader';
 import { Updoot } from '../entities/Updoot';
 
 // [{postId: 5, userId: 10},]
@@ -12,5 +12,7 @@ export const createUpdootLoader = () =>
         updootIdsToUpdoot[`${updoot.userId}|${updoot.postId}`] = updoot;
     });
 
-    return keys.map((key) => updootIdsToUpdoot[`${key.userId}|${key.postId}`]);
-});
+    return keys.map((key) => updootIdsToUpdoot[`${key.userId}|${key.postId}`]
+    );  
+  }
+);

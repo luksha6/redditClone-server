@@ -1,10 +1,10 @@
-import { Updoot } from "../entities/Updoot";
 import { MyContext } from "src/types";
-import { Arg, Ctx, Field, FieldResolver, Info, InputType, Int, Mutation, ObjectType, Query, Resolver, Root, UseMiddleware } from "type-graphql";
+import { Arg, Ctx, Field, FieldResolver, InputType, Int, Mutation, ObjectType, Query, Resolver, Root, UseMiddleware } from "type-graphql";
 import { getConnection } from "typeorm";
 import { Post } from "../entities/Post";
-import { isAuth } from "../middleware/isAuth";
+import { Updoot } from "../entities/Updoot";
 import { User } from "../entities/User";
+import { isAuth } from "../middleware/isAuth";
 
 @InputType()
 class PostInput {
@@ -47,7 +47,7 @@ export class PostResolver {
         const updoot = await updootLoader.load({
             postId: post.id, 
             userId: req.session.userId 
-        } as any)
+        })
 
         return updoot ? updoot.value : null;
     }
@@ -103,7 +103,7 @@ export class PostResolver {
     async posts(
         @Arg('limit', () => Int) limit: number,
         @Arg('cursor', () => String, {nullable: true}) cursor: string | null,
-        @Ctx() {req}: MyContext
+        @Ctx() {}: MyContext
     ): Promise<PaginatedPosts>
      {
        const realLimit = Math.min(50, limit);
