@@ -15,6 +15,7 @@ import { User } from "./entities/User";
 import { HelloResolver } from "./resolvers/hello";
 import { PostResolver } from "./resolvers/post";
 import { UserResolver } from "./resolvers/user";
+import { createUpdootLoader } from './utils/createUpdootLoader';
 import { createUserLoader } from "./utils/createUserLoader";
 
 
@@ -75,6 +76,7 @@ const main = async () => {
              res, 
              redis, 
              userLoader: createUserLoader(),
+             updootLoader: createUpdootLoader(),
              }) // accesible to resolvers
      });
 

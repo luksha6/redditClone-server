@@ -8,4 +8,5 @@ export type MyContext = {
     redis: Redis;
     res: Response;
     userLoader: ReturnType <typeof createUserLoader>;
+    updootLoader: ReturnType <typeof createUserLoader>;
 };
