@@ -21,16 +21,20 @@ import { createUserLoader } from "./utils/createUserLoader";
 
 const main = async () => {
 
-    const conn = await createConnection({
+    await createConnection({
         type: 'postgres',
-        url: process.env.DATABASE_URL,
+        host: 'database',
+        port: 5432,
+        username: 'postgres',
+        password: 'postgres',
+        database: 'simpleblog',
         logging: true,
         synchronize: true,
         migrations: [path.join(__dirname, './migrations/*')],
         entities: [Post, User, Updoot]
     });
 
-    await conn.runMigrations();
+    // await conn.runMigrations();
 
      const app = express();
 
@@ -65,6 +69,7 @@ const main = async () => {
         )
 
      const apolloServer = new ApolloServer({
+         playground: true,
          schema:  await buildSchema({
              resolvers: [HelloResolver, PostResolver, UserResolver],
              validate: false
