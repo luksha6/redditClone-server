@@ -1,0 +1,28 @@
+version: "2"
+services:
+  api:
+    container_name: api
+    build: .
+    depends_on:
+      - database
+    links:
+      - database
+    ports:
+      - "4000:4000"
+    environment:
+      - DB_HOST=database
+      - REDIS_HOST=redis
+    restart: on-failure
+
+  database:
+    container_name: database
+    image: postgres
+    environment: 
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=simpleblog
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis

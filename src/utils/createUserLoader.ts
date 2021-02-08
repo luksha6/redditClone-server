@@ -1,5 +1,5 @@
 // @ts-ignore
-import DataLoader from 'dataLoader';
+import DataLoader from 'dataloader';
 import { User } from '../entities/User';
 
 // [1, 12, 33, 4]
